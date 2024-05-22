@@ -1,0 +1,41 @@
+.floor {
+    position: absolute;
+    width: 100%;
+    height: 150lvh;
+
+    bottom: 0;
+
+    transform-style: preserve-3d;
+    transform-origin: center bottom;
+
+    transform: rotateX(90deg);
+
+    background-color: red;
+}
+
+.left {
+    position: absolute;
+    width: 75%;
+    height: 150lvh;
+
+    transform-style: preserve-3d;
+    transform-origin: left center;
+
+    transform: rotateY(-90deg);
+
+    background-color: blue;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    width: 75%;
+    height: 150lvh;
+
+    transform-style: preserve-3d;
+    transform-origin: right center;
+
+    transform: rotateY(90deg);
+
+    background-color: green;
+}
