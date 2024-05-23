@@ -1,43 +1,45 @@
-.floor {
+
+.floor, .left, .right {
     position: absolute;
-    width: 100%;
+
     height: 150lvh;
-
-    bottom: 0;
-
+    
     transform-style: preserve-3d;
+    background: var(--tex) left top / 100% 10% repeat-y;
+    animation: move 10s linear infinite;
+}
+
+.floor {
+    width: 100%;
+    bottom: 0;
     transform-origin: center bottom;
 
     transform: 
         rotateX(90deg)
         translateZ(-10px);
-
-    background: var(--floor) top left / 100% 10% repeat-y;
 }
 
 .left {
-    position: absolute;
-    width: 100%;
-    height: 150lvh;
-
-    transform-style: preserve-3d;
+    width: 50lvh;
     transform-origin: left center;
-
     transform: rotateY(-90deg);
-
-    background-color: blue;
 }
 
 .right {
-    position: absolute;
     right: 0;
-    width: 100%;
-    height: 150lvh;
-
-    transform-style: preserve-3d;
+    width: 50lvh;
     transform-origin: right center;
-
     transform: rotateY(90deg);
+}
 
-    background-color: green;
+.wall {
+    width: 100%;
+    height: 50lvh;
+    background-color: red;
+    transform-origin: center bottom;
+    transform: rotateX(-90deg);
+}
+
+@keyframes move {
+    to { background-position: left 100%; }
 }
