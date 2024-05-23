@@ -1,9 +1,9 @@
 
 .view3d {
-    --perspective: 4;
+    --perspective: 5;
     --horizon: 50;
 
-    position: absolute;
+    position: fixed;
     top: 0; 
     left: 0;
     width: 100%;
@@ -17,4 +17,5 @@
     transform-style: preserve-3d;
     perspective: calc(var(--perspective) * 1lvh);
     perspective-origin: var(--horizon-point);
+    overflow: hidden;
 }
