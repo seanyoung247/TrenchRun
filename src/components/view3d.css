@@ -3,19 +3,22 @@
     --perspective: 5;
     --horizon: 50;
 
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
+    /* position: fixed; */
+    /* top: 0; 
+    left: 0; */
     height: 100lvh;
-    touch-action: pan-y;
+    max-width: 100%;
+    aspect-ratio: 1;
+    touch-action: pan-x pan-y;
 
-    --seed: 1.008;
+    /* --seed: 1.008;
     --magic-number: calc(var(--seed) + ((var(--perspective) - 1) / 100));
-    --horizon-point: center calc((100 - (var(--horizon) * var(--magic-number, 1))) * 1vh);
+    --horizon-point: center calc((100 - (var(--horizon) * var(--magic-number, 1))) * 1vh); */
 
     transform-style: preserve-3d;
     perspective: calc(var(--perspective) * 1lvh);
-    perspective-origin: var(--horizon-point);
+    /* perspective-origin: var(--horizon-point); */
+    perspective-origin: 50% 70%;
     overflow: hidden;
 }
+
