@@ -1,0 +1,15 @@
+
+.xwing {
+    position: absolute;
+
+    left: 50%;
+    bottom: 1%;
+    
+    
+    width: 50lvh;
+    max-width: 75%;
+    aspect-ratio: 2;
+
+    translate: -50% 0%;
+    background: var(--tex) center / contain no-repeat;
+}

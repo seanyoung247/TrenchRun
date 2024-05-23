@@ -1,11 +1,14 @@
 import './Trench.css'
 import floorTex from '../assets/floor.webp'
+import wallTex from '../assets/wall.webp'
 
 export const Trench = () => (
     <div className="floor" style={{
-        '--floor': `url(${floorTex})`
+        '--tex': `url(${floorTex})`
     }}>
-        <div className="left"></div>
-        <div className="right"></div>
+        <div className="left" style={{'--tex': `url(${wallTex})`}}></div>
+        <div className="right" style={{'--tex': `url(${wallTex})`}}></div>
+
+        {/* <div className="wall"></div> */}
     </div>
 )
