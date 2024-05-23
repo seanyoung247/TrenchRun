@@ -9,6 +9,6 @@ export const Trench = () => (
         <div className="left" style={{'--tex': `url(${wallTex})`}}></div>
         <div className="right" style={{'--tex': `url(${wallTex})`}}></div>
 
-        {/* <div className="wall"></div> */}
+        <div className="wall"></div>
     </div>
 )
