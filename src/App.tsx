@@ -7,10 +7,12 @@ import './reset.css'
 
 function App() {
     return (
-        <View3D>
-            <Trench/>
-            <XWing/>
-        </View3D>
+        <div className="wrapper">
+            <View3D>
+                <Trench/>
+                <XWing/>
+            </View3D>
+        </div>
     )
 }
 

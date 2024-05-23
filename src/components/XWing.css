@@ -11,5 +11,6 @@
     aspect-ratio: 2;
 
     translate: -50% 0%;
+
     background: var(--tex) center / contain no-repeat;
 }

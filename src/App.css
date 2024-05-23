@@ -6,6 +6,12 @@
 
   width: 100%;
   height: 100lvh;
+}
+
+.wrapper {
+  height: 100lvh;
+  max-width: 100lvw;
+  aspect-ratio: 1;
 
   background: url(../stars.png) black;
 }
