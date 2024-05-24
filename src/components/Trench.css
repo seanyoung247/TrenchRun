@@ -1,7 +1,7 @@
 
 .floor, .left, .right {
-    --w: 100%;
-    --h: 50lvh;
+    --w: 100lvh;
+    --h: 100lvh;
 
     position: absolute;
 
@@ -12,22 +12,25 @@
     animation: move 5s linear infinite;
 }
 
-@media screen and (orientation: landscape) {
+/* @media screen and (orientation: landscape) {
     .floor, .left, .right {
         --w: 100%;
         --h: 100lvh;
 
         max-width: 200lvh;
     }
-}
+} */
 
 .floor {
     width: var(--w);
+    /* max-width: 100lvw; */
+    left: 50%;
     bottom: 0;
     transform-origin: center bottom;
     
     translate: 0% 0%;
     transform: 
+        translateX(-50%)
         rotateX(90deg)
         translateZ(-10px);
 }
@@ -49,23 +52,28 @@
     position: absolute;
     width: var(--w);
     height: var(--h);
-    bottom: 100%;
+    bottom: 0;
+  
+    bottom: 125lvh;
     background: 
-        linear-gradient(#ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%),
-        linear-gradient(90deg, #ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%);
-
-    opacity: 0;
-
+        linear-gradient(#ff0000 33%, transparent 33% 66%, #ff0000 66%),
+        linear-gradient(90deg, #ff0000 33%, transparent 33% 66%, #ff0000 66%);
+  
+    /* opacity: 0; */
+  
     transform-origin: center bottom;
-    transform: rotateX(-90deg);
+    transform:
+      rotateX(-90deg)
+      translateZ(125lvh);
     translate: 0 0lvh;
-    animation: wall 5s linear infinite;
-}
-
-@keyframes wall {
+    /* animation: wall 5s linear infinite; */
+  }
+  
+  @keyframes wall {
     10%, 100% { opacity: 100; }
-    100% { translate: 0 150lvh; }
-}
+    100% { translate: 0 175lvh; }
+    /* 100% { transform: translateZ(25lvh); } */
+  }
 
 @keyframes move {
     to { background-position: left 100%; }
