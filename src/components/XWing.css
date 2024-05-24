@@ -1,6 +1,5 @@
 
 .xwing {
-    --y: 0;
     --segment-width: calc(var(--w) / 3.5);
     --segment-height: calc(var(--h) / 3);
     --xOff: calc( (var(--segment-width) * var(--x)) );

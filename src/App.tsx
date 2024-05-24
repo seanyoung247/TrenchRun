@@ -1,7 +1,8 @@
 
+import { View3D } from './components/view3d'
 import { Trench } from './components/Trench'
 import { XWing } from './components/XWing'
-import { View3D } from './components/view3d'
+import { Obstacle } from './components/Obstacle'
 
 import { useKeys } from './hooks/useKeys'
 import { clamp } from './util/clamp'
@@ -33,7 +34,7 @@ function App() {
         <div className="wrapper">
             <View3D position={position}>
                 <Trench>
-                    <div className="wall"></div>
+                    <Obstacle/>
                     <XWing position={position}/>
                 </Trench>
             </View3D>
