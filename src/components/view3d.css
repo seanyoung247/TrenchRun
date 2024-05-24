@@ -9,7 +9,7 @@
 
     transform-style: preserve-3d;
     perspective: calc(var(--perspective) * 1lvh);
-    perspective-origin: 50% 75%;
+    perspective-origin: 50% 70%;
     overflow: hidden;
 }
 

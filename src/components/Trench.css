@@ -36,9 +36,12 @@
 .wall {
     width: 100%;
     height: 50lvh;
+    bottom: 0;
     background: 
         linear-gradient(#ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%),
         linear-gradient(90deg, #ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%);
+
+    opacity: 0;
 
     transform-origin: center bottom;
     transform: rotateX(-90deg);
@@ -47,7 +50,8 @@
 }
 
 @keyframes wall {
-    to { translate: 0 150lvh; }
+    10%, 100% { opacity: 100; }
+    100% { translate: 0 150lvh; }
 }
 
 @keyframes move {
