@@ -1,6 +1,11 @@
 
 .view3d {
     --perspective: 5;
+    --xOff: calc( 50% + (var(--x) * 15lvh) );
+    --yOff: calc( 33% + (var(--y) * 30%) );
+}
+
+.view3d {
 
     height: 100%;
     width: 100%;
@@ -10,7 +15,8 @@
 
     transform-style: preserve-3d;
     perspective: calc(var(--perspective) * 1lvh);
-    perspective-origin: 50% 70%;
+    perspective-origin: var(--xOff) var(--yOff);
+
     overflow: hidden;
 }
 

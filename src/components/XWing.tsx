@@ -1,7 +1,15 @@
 
-import xwingImg from '../assets/xwing.png'
+import xwingImg from '../assets/xwingp.png'
 import './XWing.css'
 
-export const XWing = () => (
-    <div className="xwing" style={{'--tex': `url(${xwingImg})`}}/>
+type XWingProps = {
+    position: {x:number, y: number}
+}
+
+export const XWing = ({position}: XWingProps) => (
+    <div className="xwing" style={{
+        '--tex': `url(${xwingImg})`,
+        '--x': position.x,
+        '--y': position.y,
+    }}/>
 )

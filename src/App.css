@@ -11,10 +11,11 @@
 
 .wrapper {
   height: 100lvh;
-  max-width: 100lvw;
-  width: 1000lvw;
-
-  /* aspect-ratio: 1; */
+  width: 100lvw;
 
   background: url(../stars.png) black;
+}
+
+@supports (-moz-appearance: none) {
+    #root { bottom: unset; top: 0; }
 }
