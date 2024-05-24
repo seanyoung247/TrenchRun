@@ -6,11 +6,13 @@
     top: 80%;
     
     
-    width: 50lvh;
+    width: 75lvh;
     max-width: 75%;
     aspect-ratio: 2;
 
     translate: -50% 0%;
+
+    transform: translateZ(-50px);
 
     background: var(--tex) center / contain no-repeat;
 }

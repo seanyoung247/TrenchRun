@@ -1,5 +1,8 @@
 
 .floor, .left, .right {
+    --w: 100%;
+    --h: 50lvh;
+
     position: absolute;
 
     height: 150lvh;
@@ -9,8 +12,17 @@
     animation: move 5s linear infinite;
 }
 
+@media screen and (orientation: landscape) {
+    .floor, .left, .right {
+        --w: 100%;
+        --h: 100lvh;
+
+        max-width: 200lvh;
+    }
+}
+
 .floor {
-    width: 100%;
+    width: var(--w);
     bottom: 0;
     transform-origin: center bottom;
     
@@ -21,22 +33,23 @@
 }
 
 .left {
-    width: 50lvh;
+    width: var(--h);
     transform-origin: left center;
     transform: rotateY(-90deg);
 }
 
 .right {
     right: 0;
-    width: 50lvh;
+    width: var(--h);
     transform-origin: right center;
     transform: rotateY(90deg);
 }
 
 .wall {
-    width: 100%;
-    height: 50lvh;
-    bottom: 0;
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    bottom: 100%;
     background: 
         linear-gradient(#ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%),
         linear-gradient(90deg, #ff0000aa 33%, transparent 33% 66%, #ff0000aa 66%);
