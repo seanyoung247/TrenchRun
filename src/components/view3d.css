@@ -17,6 +17,7 @@
     perspective: calc(var(--perspective) * 1lvh);
     perspective-origin: var(--xOff) var(--yOff);
 
-    overflow: hidden;
+    /* overflow: hidden; */
+    transition: perspective-origin 0.5s;
 }
 

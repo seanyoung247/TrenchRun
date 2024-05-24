@@ -33,7 +33,7 @@ function App() {
         <div className="wrapper">
             <View3D position={position}>
                 <Trench>
-                    {/* <div className="wall"></div> */}
+                    <div className="wall"></div>
                     <XWing position={position}/>
                 </Trench>
             </View3D>

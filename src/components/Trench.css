@@ -1,11 +1,12 @@
 
 .floor, .left, .right {
-    --w: 100lvh;
+    --w: 75lvh;
     --h: 100lvh;
+    --l: 100lvh;
 
     position: absolute;
 
-    height: 150lvh;
+    height: var(--l);
     
     transform-style: preserve-3d;
     background: var(--tex) left top / 100% 10% repeat-y;
@@ -23,7 +24,6 @@
 
 .floor {
     width: var(--w);
-    /* max-width: 100lvw; */
     left: 50%;
     bottom: 0;
     transform-origin: center bottom;
@@ -54,25 +54,23 @@
     height: var(--h);
     bottom: 0;
   
-    bottom: 125lvh;
+    bottom: 100svh;
     background: 
         linear-gradient(#ff0000 33%, transparent 33% 66%, #ff0000 66%),
         linear-gradient(90deg, #ff0000 33%, transparent 33% 66%, #ff0000 66%);
   
-    /* opacity: 0; */
+    opacity: 0;
   
     transform-origin: center bottom;
     transform:
-      rotateX(-90deg)
-      translateZ(125lvh);
-    translate: 0 0lvh;
-    /* animation: wall 5s linear infinite; */
+      rotateX(-90deg);
+    translate: 0 0;
+    animation: wall 5s linear infinite;
   }
   
   @keyframes wall {
     10%, 100% { opacity: 100; }
-    100% { translate: 0 175lvh; }
-    /* 100% { transform: translateZ(25lvh); } */
+    100% { translate: 0 var(--l); }
   }
 
 @keyframes move {

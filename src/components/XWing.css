@@ -1,9 +1,9 @@
 
 .xwing {
     --y: 0;
-    --segment-width: calc(var(--w) / 3);
+    --segment-width: calc(var(--w) / 3.5);
     --segment-height: calc(var(--h) / 3);
-    --xOff: calc( (15lvh * var(--x)) );
+    --xOff: calc( (var(--segment-width) * var(--x)) );
     --yOff: calc( (var(--h) / -3) + (var(--segment-height) * var(--y)) ); 
 }
 
@@ -14,7 +14,7 @@
     bottom: 0;
     
     width: 50lvw;
-    max-width: 75%;
+    max-width: 50%;
     aspect-ratio: 2;
 
     translate: -50% 0%;
@@ -25,4 +25,6 @@
         translate3D(var(--xOff), var(--yOff), 0);
 
     background: var(--tex) center / contain no-repeat;
+
+    transition: transform 0.5s;
 }
