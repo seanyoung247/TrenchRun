@@ -5,10 +5,11 @@ import Player from '../../types/player'
 import { generateLayout } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
-import './Obstacle.css'
+import './Obstacles.css'
 
 type ObstacleProps = {
-    player: Player
+    player: Player,
+    position?: number
 }
 
 export const Obstacle = ({player}:ObstacleProps) => {
@@ -34,3 +35,13 @@ export const Obstacle = ({player}:ObstacleProps) => {
         </div>
     )
 }
+
+// type ObstacleListProps = {
+//     player: Player,
+//     count?: number,
+//     onCollision?: ()=>void,
+// }
+
+// export const Obstacles = ({player}:ObstacleListProps) => {
+
+// }

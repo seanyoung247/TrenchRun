@@ -1,6 +1,6 @@
 
 /**
- * For a given value of change in seconds, calcualtes the
+ * For a given value of change in seconds, calculates the
  * exact value of change for this frame to give frame
  * rate independent animation.
  * 

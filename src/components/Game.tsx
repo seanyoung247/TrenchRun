@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { View3D } from './game/view3d'
 import { Trench } from './game/Trench'
 import { XWing } from './game/XWing'
-import { Obstacle } from './game/Obstacle'
+import { Obstacle } from './game/Obstacles'
 
 import { useKeys } from '../hooks/useKeys'
 import { useAnimationFrame } from '../hooks/frame'
