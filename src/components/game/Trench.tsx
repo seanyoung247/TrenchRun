@@ -1,6 +1,6 @@
 import './Trench.css'
-import floorTex from '../assets/floor.webp'
-import wallTex from '../assets/wall.webp'
+import floorTex from '../../assets/floor.webp'
+import wallTex from '../../assets/wall.webp'
 import { ReactNode } from 'react'
 
 export const Trench = ({children}:{children:ReactNode}) => (

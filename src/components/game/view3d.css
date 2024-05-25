@@ -1,7 +1,8 @@
 
 .view3d {
     --perspective: 2;
-    --xOff: calc( 50% + (var(--x) * 15lvh) );
+    --xShift: min(15lvh, 15lvw);
+    --xOff: calc( 50% + (var(--x) * 20lvh) );
     --yOff: calc( 33% + (var(--y) * 30%) );
 }
 
