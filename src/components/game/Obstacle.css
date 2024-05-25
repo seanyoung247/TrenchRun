@@ -1,29 +1,30 @@
+/* Initial variables */
 .obstacle {
     --progress: calc(var(--zPos) * 5lvh);
 }
 
+/* Basic layout */
 .obstacle {
     position: absolute;
     width: var(--w);
     height: var(--h);
-    bottom: 0;
-  
     bottom: 100lvh;
-    background: 
-        linear-gradient(#ff0000 33%, transparent 33% 66%, #ff0000 66%),
-        linear-gradient(90deg, #ff0000 33%, transparent 33% 66%, #ff0000 66%);
-  
-    /* opacity: 0; */
-  
-    transform-origin: center bottom;
-    transform:
-      rotateX(-90deg)
-      translateZ(var(--progress));
-    translate: 0 0;
-    animation: wall 5s linear infinite;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-/* @keyframes wall {
-    10%, 100% { opacity: 100; }
-    100% { translate: 0 var(--l); }
-} */
+/* Dynamic positioning */
+.obstacle {
+    transform-origin: center bottom;
+    transform:
+        rotateX(-90deg)
+        translateZ(var(--progress));
+}
+
+/* Theming */
+.obstacle .segment.filled {
+    background: red;
+}
+

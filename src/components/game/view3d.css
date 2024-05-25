@@ -19,6 +19,6 @@
     perspective-origin: var(--xOff) var(--yOff);
 
     /* overflow: hidden; */
-    transition: perspective-origin 0.5s;
+    transition: perspective-origin 0.25s;
 }
 

@@ -1,6 +1,6 @@
 
 import Player from '../../types/player'
-import xwingImg from '../../assets/xwingp.png'
+import xwingImg from '../../assets/xwing.webp'
 import './XWing.css'
 
 type XWingProps = {

@@ -1,5 +1,6 @@
 
 .xwing {
+    --response: 0.25s;
     --segment-width: calc(var(--w) / 3.5);
     --segment-height: calc(var(--h) / 3);
     --xOff: calc( (var(--segment-width) * var(--x)) );
@@ -25,5 +26,5 @@
 
     background: var(--tex) center / contain no-repeat;
 
-    transition: transform 0.5s;
+    transition: transform 0.25s;
 }
