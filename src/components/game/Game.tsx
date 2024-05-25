@@ -9,13 +9,13 @@ import { Obstacle } from './Obstacle'
 import { useKeys } from '../../hooks/useKeys'
 import { useAnimationFrame } from '../../hooks/frame'
 import { clamp } from '../../util/clamp'
+import { tick } from '../../util/animation'
 
 import { Point, IIndexable } from '../../types/misc'
 import Player, { createPlayer } from '../../types/player'
 
 import './Game.css'
 
-// const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point) => {
 const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point) => {
     setter(
         createPlayer({
@@ -27,6 +27,9 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
+    const playerSpeed = 2; // 2 distance units a second
+
+    /* Handle User input */
     useKeys((e:KeyboardEvent) => {
         const keys:IIndexable = {
             ArrowUp: ()=>setPosition(setPlayer, player, {x:0, y:-1}),
@@ -36,11 +39,13 @@ export const Game = () => {
         }; keys?.[e.key]()
     })
 
-    useAnimationFrame(()=>{
-        setPlayer({...player, position:player.position + 0.1})
+    /* Update game state */
+    useAnimationFrame((time: number)=>{
+        const distanceTravelled = tick(playerSpeed, time)
+        setPlayer({...player, position:player.position + distanceTravelled})
     })
 
-
+    /* Render */
     return (
         <div className="wrapper">
             <View3D player={player}>
