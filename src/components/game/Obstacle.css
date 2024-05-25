@@ -9,7 +9,7 @@
         linear-gradient(#ff0000 33%, transparent 33% 66%, #ff0000 66%),
         linear-gradient(90deg, #ff0000 33%, transparent 33% 66%, #ff0000 66%);
   
-    opacity: 0;
+    /* opacity: 0; */
   
     transform-origin: center bottom;
     transform:
@@ -18,7 +18,7 @@
     animation: wall 5s linear infinite;
 }
 
-@keyframes wall {
+/* @keyframes wall {
     10%, 100% { opacity: 100; }
     100% { translate: 0 var(--l); }
-}
+} */

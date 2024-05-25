@@ -9,13 +9,6 @@
   bottom: 0;
 }
 
-.wrapper {
-  height: 100lvh;
-  width: 100lvw;
-
-  background: url(../stars.png) black;
-}
-
 @supports (-moz-appearance: none) {
     #root { bottom: unset; top: 0; }
 }
