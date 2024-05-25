@@ -50,7 +50,7 @@ export const Game = () => {
         <div className="wrapper">
             <View3D player={player}>
                 <Trench player={player}>
-                    <Obstacle/>
+                    <Obstacle player={player}/>
                     <XWing player={player}/>
                 </Trench>
             </View3D>

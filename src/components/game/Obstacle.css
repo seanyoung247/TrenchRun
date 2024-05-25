@@ -1,10 +1,14 @@
 .obstacle {
+    --progress: calc(var(--zPos) * 5lvh);
+}
+
+.obstacle {
     position: absolute;
     width: var(--w);
     height: var(--h);
     bottom: 0;
   
-    bottom: 100svh;
+    bottom: 100lvh;
     background: 
         linear-gradient(#ff0000 33%, transparent 33% 66%, #ff0000 66%),
         linear-gradient(90deg, #ff0000 33%, transparent 33% 66%, #ff0000 66%);
@@ -13,7 +17,8 @@
   
     transform-origin: center bottom;
     transform:
-      rotateX(-90deg);
+      rotateX(-90deg)
+      translateZ(var(--progress));
     translate: 0 0;
     animation: wall 5s linear infinite;
 }
