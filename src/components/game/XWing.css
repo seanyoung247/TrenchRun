@@ -1,30 +1,28 @@
 
 .xwing {
+    /* Variables */
     --response: 0.25s;
     --segment-width: calc(var(--w) / 3.5);
     --segment-height: calc(var(--h) / 3);
     --xOff: calc( (var(--segment-width) * var(--x)) );
     --yOff: calc( (var(--h) / -3) + (var(--segment-height) * var(--y)) ); 
-}
 
-.xwing {
+    /* Base styles */
     position: absolute;
-
     left: 50%;
     bottom: 0;
-    
     width: 50lvw;
     max-width: 50%;
     aspect-ratio: 2;
-
     translate: -50% 0%;
 
+    /* Dynamic positioning */
     transform-origin: center bottom;
     transform: 
         rotateX(-90deg)
-        translate3D(var(--xOff), var(--yOff), 0);
-
-    background: var(--tex) center / contain no-repeat;
-
+        translate3D(var(--xOff), var(--yOff), -0.25lvh);
     transition: transform 0.25s;
+
+    /* Theming */
+    background: var(--tex) center / contain no-repeat;
 }

@@ -1,18 +1,18 @@
 
 import { useState } from 'react'
 
-import { View3D } from './view3d'
-import { Trench } from './Trench'
-import { XWing } from './XWing'
-import { Obstacle } from './Obstacle'
+import { View3D } from './game/view3d'
+import { Trench } from './game/Trench'
+import { XWing } from './game/XWing'
+import { Obstacle } from './game/Obstacle'
 
-import { useKeys } from '../../hooks/useKeys'
-import { useAnimationFrame } from '../../hooks/frame'
-import { clamp } from '../../util/clamp'
-import { tick } from '../../util/animation'
+import { useKeys } from '../hooks/useKeys'
+import { useAnimationFrame } from '../hooks/frame'
+import { clamp } from '../util/clamp'
+import { tick } from '../util/animation'
 
-import { Point, IIndexable } from '../../types/misc'
-import Player, { createPlayer } from '../../types/player'
+import { Point, IIndexable } from '../types/misc'
+import Player, { createPlayer } from '../types/player'
 
 import './Game.css'
 
@@ -27,7 +27,7 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
-    const playerSpeed = 2; // 2 distance units a second
+    const playerSpeed = 2; // 2 distance units per second
 
     /* Handle User input */
     useKeys((e:KeyboardEvent) => {
@@ -42,7 +42,7 @@ export const Game = () => {
     /* Update game state */
     useAnimationFrame((time: number)=>{
         const distanceTravelled = tick(playerSpeed, time)
-        setPlayer({...player, position:player.position + distanceTravelled})
+        setPlayer({...player, position: player.position + distanceTravelled})
     })
 
     /* Render */

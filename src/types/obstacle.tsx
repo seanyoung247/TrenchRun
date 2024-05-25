@@ -6,7 +6,8 @@ export type ObstacleLayout = [
 ]
 
 export default interface ObstacleDesc {
-
+    layout: ObstacleLayout,
+    position: number,
 }
 
 const layoutTemplates: ObstacleLayout[]  = [

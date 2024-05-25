@@ -1,5 +1,5 @@
 
-import { Game } from './components/game/Game'
+import { Game } from './components/Game'
 
 import './App.css'
 import './reset.css'

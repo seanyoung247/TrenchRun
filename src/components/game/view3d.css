@@ -1,24 +1,21 @@
 
 .view3d {
+    /* Variables */
     --perspective: 2;
     --xShift: min(15lvh, 15lvw);
     --xOff: calc( 50% + (var(--x) * 20lvh) );
     --yOff: calc( 33% + (var(--y) * 30%) );
-}
 
-.view3d {
-
+    /* Base styles */
     height: 100%;
     width: 100%;
     bottom: 0;
-
     touch-action: pan-x pan-y;
 
+    /* View */
     transform-style: preserve-3d;
     perspective: calc(var(--perspective) * 1lvh);
     perspective-origin: var(--xOff) var(--yOff);
-
-    /* overflow: hidden; */
     transition: perspective-origin 0.25s;
 }
 

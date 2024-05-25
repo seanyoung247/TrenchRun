@@ -2,21 +2,18 @@
 .floor {
     --zPos: 0;
     --tex: red;
-
     --segment-length: 5lvh;
 
     --w: 75lvh;
     --h: 100lvh;
     --l: 100lvh;
-
+    
     --progress: calc(var(--zPos) * var(--segment-length));
 }
 
 .floor, .left, .right {
     position: absolute;
-
     height: var(--l);
-    
     transform-style: preserve-3d;
     background: var(--tex) left var(--progress) / 100% 10% repeat-y;
 }
