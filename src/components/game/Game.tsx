@@ -10,7 +10,7 @@ import { useKeys } from '../../hooks/useKeys'
 import { clamp } from '../../util/clamp'
 
 import { Point, IIndexable } from '../../types/misc'
-import { Player } from '../../types/player'
+import Player, { createPlayer } from '../../types/player'
 
 import './Game.css'
 

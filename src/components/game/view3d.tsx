@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Player } from '../../types/player'
+import Player from '../../types/player'
 import './view3d.css'
 
 type view3DProps = {

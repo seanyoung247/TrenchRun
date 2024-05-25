@@ -1,5 +1,5 @@
 
-import { Player } from '../../types/player'
+import Player from '../../types/player'
 import xwingImg from '../../assets/xwingp.png'
 import './XWing.css'
 
