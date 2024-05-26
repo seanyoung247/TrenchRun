@@ -21,6 +21,13 @@
         rotateX(-90deg)
         translateZ(var(--progress));
 }
+
+/* Theming */
+.obstacle .segment.filled {
+    background: red;
+}
+
+/* Segments */
 .segment {
     position: relative;
     transform-style: preserve-3d;
@@ -63,9 +70,3 @@
     rotate: x 90deg;
     transform-origin: center bottom;
 }
-
-/* Theming */
-.obstacle .segment.filled {
-    background: red;
-}
-
