@@ -8,6 +8,6 @@
  * @param tDelta - number of seconds since last update
  * @returns 
  */
-export const tick = (num: number, tDelta: number): number => (
-    num / tDelta
+export const lerp = (num: number, tDelta: number): number => (
+    num * tDelta
 )

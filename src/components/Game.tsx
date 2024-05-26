@@ -9,7 +9,7 @@ import { Obstacles } from './game/Obstacles'
 import { useKeys } from '../hooks/useKeys'
 import { useAnimationFrame } from '../hooks/frame'
 import { clamp } from '../util/clamp'
-import { tick } from '../util/animation'
+import { lerp } from '../util/animation'
 
 import { Point, IIndexable } from '../types/misc'
 import Player, { createPlayer } from '../types/player'
@@ -28,7 +28,7 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
-    const playerSpeed = useRef(0.25); // distance units per second
+    const playerSpeed = useRef(4); // distance units per second
 
     const collided: CollisionCallback = () => {
         playerSpeed.current = 0
@@ -46,7 +46,7 @@ export const Game = () => {
 
     /* Update game state */
     useAnimationFrame((time: number)=>{
-        const distanceTravelled = tick(playerSpeed.current, time)
+        const distanceTravelled = lerp(playerSpeed.current, time / 1000)
         setPlayer({...player, position: player.position + distanceTravelled})
     })
 
