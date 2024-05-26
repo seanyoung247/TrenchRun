@@ -1,5 +1,5 @@
 
-import { ReactElement, useRef } from 'react'
+import { ReactElement, useEffect, useRef } from 'react'
 
 import Player from '../../types/player'
 import { generateLayout } from '../../types/obstacle'
@@ -9,39 +9,53 @@ import './Obstacles.css'
 
 type ObstacleProps = {
     player: Player,
-    position?: number
+    start?: number,
 }
 
-export const Obstacle = ({player}:ObstacleProps) => {
+export const Obstacle = ({player, start=0}:ObstacleProps) => {
+    const firstPos = player.position
+    const lastPos = firstPos + 20
+    const position = useRef(firstPos + start)
     const layout = useRef<ReactElement[]>([])
-    const position = player.position % (125 / 5);
-    const lastPosition = useRef<number>(position + 1)
-    
-    /* If the obstacle position has reset, regenerate it's layout */
-    if (position < lastPosition.current) {
+
+    if (position.current < firstPos) {
         const layoutTemplate = generateLayout()
         layout.current = layoutTemplate.map(v => (
             <div className={ classList("segment", (v === 1)&&"filled") }/>
         ))
-    }
 
-    lastPosition.current = position
+        position.current = lastPos
+    }
 
     return (
         <div className="obstacle" style={{
-            '--zPos': position
+            '--zPos': lastPos - position.current 
         }}>
             { layout.current }
         </div>
     )
 }
 
-// type ObstacleListProps = {
-//     player: Player,
-//     count?: number,
-//     onCollision?: ()=>void,
-// }
+type ObstacleListProps = {
+    player: Player,
+    count?: number,
+    onCollision?: (()=>void) | null,
+}
 
-// export const Obstacles = ({player}:ObstacleListProps) => {
+export const Obstacles = ({player, count=1, onCollision=null}:ObstacleListProps) => {
+    const obstacles = useRef<ReactElement[]>()
+    useEffect(() => {
+        obstacles.current = []
+        for (let i = 0; i < count; i++) {
+            obstacles.current.push(
+                <Obstacle key={i} player={player} start={(i * 5) + 10}/>
+            )
+        }
+    }, [count, player])
 
-// }
+    if (onCollision !== null) {
+        // Do collision detection
+    }
+
+    return <>{ obstacles.current }</>
+}

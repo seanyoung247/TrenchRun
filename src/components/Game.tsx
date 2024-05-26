@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { View3D } from './game/view3d'
 import { Trench } from './game/Trench'
 import { XWing } from './game/XWing'
-import { Obstacle } from './game/Obstacles'
+import { Obstacles } from './game/Obstacles'
 
 import { useKeys } from '../hooks/useKeys'
 import { useAnimationFrame } from '../hooks/frame'
@@ -27,7 +27,7 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
-    const playerSpeed = 2; // 2 distance units per second
+    const playerSpeed = 4; // distance units per second
 
     /* Handle User input */
     useKeys((e:KeyboardEvent) => {
@@ -50,7 +50,7 @@ export const Game = () => {
         <div className="wrapper">
             <View3D player={player}>
                 <Trench player={player}>
-                    <Obstacle player={player}/>
+                    <Obstacles player={player} count={4}/>
                     <XWing player={player}/>
                 </Trench>
             </View3D>
