@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import { View3D } from './game/view3d'
 import { Trench } from './game/Trench'
@@ -13,6 +13,7 @@ import { tick } from '../util/animation'
 
 import { Point, IIndexable } from '../types/misc'
 import Player, { createPlayer } from '../types/player'
+import { CollisionCallback } from '../types/collisions'
 
 import './Game.css'
 
@@ -27,7 +28,11 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
-    const playerSpeed = 4; // distance units per second
+    const playerSpeed = useRef(0.25); // distance units per second
+
+    const collided: CollisionCallback = () => {
+        playerSpeed.current = 0
+    }
 
     /* Handle User input */
     useKeys((e:KeyboardEvent) => {
@@ -41,7 +46,7 @@ export const Game = () => {
 
     /* Update game state */
     useAnimationFrame((time: number)=>{
-        const distanceTravelled = tick(playerSpeed, time)
+        const distanceTravelled = tick(playerSpeed.current, time)
         setPlayer({...player, position: player.position + distanceTravelled})
     })
 
@@ -50,7 +55,7 @@ export const Game = () => {
         <div className="wrapper">
             <View3D player={player}>
                 <Trench player={player}>
-                    <Obstacles player={player} count={4}/>
+                    <Obstacles player={player} count={4} onCollision={collided}/>
                     <XWing player={player}/>
                 </Trench>
             </View3D>

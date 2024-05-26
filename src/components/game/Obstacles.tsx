@@ -2,6 +2,7 @@
 import { ReactElement, useRef } from 'react'
 
 import Player from '../../types/player'
+import { CollisionCallback } from '../../types/collisions'
 import { ObstacleLayout, generateLayout } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
@@ -10,7 +11,7 @@ import './Obstacles.css'
 type ObstacleProps = {
     player: Player,
     start?: number,
-    onCollision?: (()=>void) | null,
+    onCollision?: CollisionCallback | null,
 }
 
 type ObstacleData = {
@@ -19,15 +20,19 @@ type ObstacleData = {
     layout: ObstacleLayout,
 }
 
-const genSegments = (layout:ObstacleLayout) => layout.map(v => (
-    <div className={ classList("segment", (v === 1)&&"filled") }/> 
+const genSegments = (layout:ObstacleLayout) => layout.map((v,i) => (
+    <div key={i} className={ classList("segment", (v === 1)&&"filled") }/> 
 ))
 
 const newObstacleData = (
-    position=0, 
-    layout:ObstacleLayout=[0,0,0, 0,0,0, 0,0,0], 
-    segments:ReactElement[]=genSegments(layout)
+    position: number=0, 
+    layout: ObstacleLayout=[0,0,0, 0,0,0, 0,0,0], 
+    segments: ReactElement[]=genSegments(layout)
 ):ObstacleData => ({position, segments, layout})
+
+const isFilled = (layout:ObstacleLayout, x:number, y:number):boolean => (
+    layout[(x + 1) + (3 * (y + 1))] > 0
+)
 
 export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
     const firstPos = player.position
@@ -35,8 +40,8 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
     const descriptor = useRef<ObstacleData>(newObstacleData(firstPos + start))
 
     // If the obstacle is behind the player:
-    // remove it and create a new one at the end of the trench
     if (descriptor.current.position + 2 < firstPos) {
+        // remove it and create a new one at the end of the trench
         const layoutTemplate = generateLayout()
         descriptor.current = newObstacleData(
             lastPos, layoutTemplate, genSegments(layoutTemplate)
@@ -49,7 +54,9 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
         if (Math.floor(descriptor.current.position) === Math.floor(firstPos)) {
             // Player has collided if the obstacle segment at 
             // the same x,y offset as the player is filled
-
+            if (isFilled(descriptor.current.layout, player.offset.x, player.offset.y)) {
+                onCollision(player)
+            }
         }
     }
 
@@ -65,7 +72,7 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
 type ObstacleListProps = {
     player: Player,
     count?: number,
-    onCollision?: (()=>void) | null,
+    onCollision?: CollisionCallback | null,
 }
 
 export const Obstacles = ({player, count=1, onCollision=null}:ObstacleListProps) => {
@@ -76,6 +83,5 @@ export const Obstacles = ({player, count=1, onCollision=null}:ObstacleListProps)
             <Obstacle key={i} player={player} start={start} onCollision={onCollision}/>
         )
     }
-
     return <>{ obstacles }</>
 }
