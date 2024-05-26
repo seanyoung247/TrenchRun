@@ -2,8 +2,8 @@
 import { ReactElement, useRef } from 'react'
 
 import Player from '../../types/player'
-import { CollisionCallback } from '../../types/collisions'
-import { ObstacleLayout, generateLayout } from '../../types/obstacle'
+import { CollisionCallback, detectCollision } from '../../types/collisions'
+import { ObstacleData, ObstacleLayout, generateLayout } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
 import './Obstacles.css'
@@ -12,12 +12,6 @@ type ObstacleProps = {
     player: Player,
     start?: number,
     onCollision?: CollisionCallback | null,
-}
-
-type ObstacleData = {
-    position: number,
-    segments: ReactElement[],
-    layout: ObstacleLayout,
 }
 
 const genSegments = (layout:ObstacleLayout) => layout.map((v,i) => (
@@ -29,10 +23,6 @@ const newObstacleData = (
     layout: ObstacleLayout=[0,0,0, 0,0,0, 0,0,0], 
     segments: ReactElement[]=genSegments(layout)
 ):ObstacleData => ({position, segments, layout})
-
-const isFilled = (layout:ObstacleLayout, x:number, y:number):boolean => (
-    layout[(x + 1) + (3 * (y + 1))] > 0
-)
 
 export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
     const firstPos = player.position
@@ -48,16 +38,8 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
         )
     }
 
-    if (onCollision !== null) {
-        // Player is always at first position, so there can 
-        // only be a collision if the obstacle is at firstPos
-        if (Math.floor(descriptor.current.position) === Math.floor(firstPos)) {
-            // Player has collided if the obstacle segment at 
-            // the same x,y offset as the player is filled
-            if (isFilled(descriptor.current.layout, player.offset.x, player.offset.y)) {
-                onCollision(player)
-            }
-        }
+    if (onCollision !== null && detectCollision(player, descriptor.current)) {
+        onCollision()
     }
 
     return (
