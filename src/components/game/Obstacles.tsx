@@ -2,8 +2,9 @@
 import { ReactElement, useRef } from 'react'
 
 import Player from '../../types/player'
+// import { Point } from '../../types/misc'
 import { CollisionCallback, detectCollision } from '../../types/collisions'
-import { ObstacleData, ObstacleLayout, generateLayout } from '../../types/obstacle'
+import { ObstacleData, ObstacleLayout, generateLayout, indexToPoint, isFilled } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
 import './Obstacles.css'
@@ -14,9 +15,30 @@ type ObstacleProps = {
     onCollision?: CollisionCallback | null,
 }
 
-const genSegments = (layout:ObstacleLayout) => layout.map((v,i) => (
-    <div key={i} className={ classList("segment", (v === 1)&&"filled") }/> 
-))
+const genSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
+    const filled = (v > 0)
+    const p = indexToPoint(i)
+    // const sides:ReactElement[] = []
+    const edges = [
+        {side:'left', p:{x:-1,y:0}},
+        {side:'right', p:{x:1,y:0}},
+        {side:'top', p:{x:0,y:-1}},
+        {side:'bottom', p:{x:0,y:1}},
+    ]
+    const sides = (!isFilled(a as ObstacleLayout, p)) ? edges.map(v => (
+        isFilled(a as ObstacleLayout, {x:(p.x + v.p.x), y:(p.y + v.p.y)})&&(
+            <div key={v.side} className={classList('side', v.side)}/>
+        )
+    )).filter(v=>v) : []
+
+    return (
+        <div key={i} 
+            className={ classList("segment", (filled)&&"filled") }
+        >
+            { sides }
+        </div>
+    )
+})
 
 const newObstacleData = (
     position: number=0, 
@@ -38,8 +60,8 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
         )
     }
 
-    if (onCollision !== null && detectCollision(player, descriptor.current)) {
-        onCollision()
+    if (detectCollision(player, descriptor.current)) {
+        onCollision?.(player)
     }
 
     return (

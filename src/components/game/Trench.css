@@ -11,7 +11,7 @@
     --progress: calc(var(--zPos) * var(--segment-length));
 }
 
-.floor, .left, .right {
+.floor, .floor > .left, .floor > .right {
     position: absolute;
     height: var(--l);
     transform-style: preserve-3d;
@@ -31,13 +31,13 @@
         translateZ(-10px);
 }
 
-.left {
+.floor > .left {
     width: var(--h);
     transform-origin: left center;
     transform: rotateY(-90deg);
 }
 
-.right {
+.floor > .right {
     right: 0;
     width: var(--h);
     transform-origin: right center;
