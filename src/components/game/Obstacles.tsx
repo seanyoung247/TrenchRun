@@ -3,7 +3,7 @@ import { ReactElement, useRef } from 'react'
 
 import Player from '../../types/player'
 // import { Point } from '../../types/misc'
-import { CollisionCallback, detectCollision } from '../../types/collisions'
+import { CollisionCallback, detectObstacleCollision } from '../../types/collisions'
 import { ObstacleData, ObstacleLayout, generateLayout, indexToPoint, isFilled } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
@@ -66,7 +66,7 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
         )
     }
 
-    if (detectCollision(player, descriptor.current)) {
+    if (detectObstacleCollision(player, descriptor.current)) {
         onCollision?.(player)
     }
 

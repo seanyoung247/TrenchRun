@@ -47,5 +47,5 @@ export const indexToPoint = (index:number):Point => ({
 
 export const isFilled = (layout:ObstacleLayout, p:Point):boolean => (
     !(p.x < -1 || p.x > 1 || p.y < -1 || p.y > 1) &&    // Are values in bounds?
-    (layout[pointToIndex(p.x, p.y)] > 0)            // Is segment filled?
+    (layout[pointToIndex(p.x, p.y)] > 0)                // Is segment filled?
 )

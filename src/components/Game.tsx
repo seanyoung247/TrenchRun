@@ -8,6 +8,8 @@ import { Obstacles } from './game/Obstacles'
 
 import { useKeys } from '../hooks/useKeys'
 import { useAnimationFrame } from '../hooks/frame'
+import { useSwipeable } from 'react-swipeable'
+
 import { clamp } from '../util/clamp'
 import { lerp } from '../util/animation'
 
@@ -39,15 +41,29 @@ export const Game = () => {
     }
 
     /* Handle User input */
+    const actions = {
+        moveUp: ()=>setPosition(setPlayer, player, {x:0, y:-1}),
+        moveDn: ()=>setPosition(setPlayer, player, {x:0, y:1}),
+        moveLt: ()=>setPosition(setPlayer, player, {x:-1, y:0}),
+        moveRt: ()=>setPosition(setPlayer, player, {x:1, y:0}),
+    }
+    /* Keyboard */
     useKeys((e:KeyboardEvent) => {
         const keys:IIndexable = {
-            ArrowUp: ()=>setPosition(setPlayer, player, {x:0, y:-1}),
-            ArrowDown: ()=>setPosition(setPlayer, player, {x:0, y:1}),
-            ArrowLeft: ()=>setPosition(setPlayer, player, {x:-1,y:0}),
-            ArrowRight: ()=>setPosition(setPlayer, player, {x:1, y:0}),
+            ArrowUp: actions.moveUp,
+            ArrowDown: actions.moveDn,
+            ArrowLeft: actions.moveLt,
+            ArrowRight: actions.moveRt,
         }
         if (player.isAlive) keys?.[e.key]()
     })
+    /* Touchscreen Swipe */
+    const touch = useSwipeable({
+        onSwipedUp: actions.moveUp,
+        onSwipedDown: actions.moveDn,
+        onSwipedLeft: actions.moveLt,
+        onSwipedRight: actions.moveRt,
+    });
 
     /* Update game state */
     useAnimationFrame((time: number)=>{
@@ -58,7 +74,7 @@ export const Game = () => {
 
     /* Render */
     return (
-        <div className="wrapper">
+        <div {...touch} className="wrapper">
             <View3D player={player}>
                 <Trench player={player}>
                     <Obstacles player={player} count={4} onCollision={collided}/>

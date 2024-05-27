@@ -5,7 +5,7 @@ import { ObstacleData, isFilled } from "./obstacle"
 export type CollisionCallback = (playe?:Player) => void
 
 // TODO: Replace with good collision detection...
-export const detectCollision = (player: Player, obstacle: ObstacleData) => (
+export const detectObstacleCollision = (player: Player, obstacle: ObstacleData) => (
     // Player is always at first position, so there can 
     // only be a collision if the obstacle is at firstPos
     (Math.floor(obstacle.position) === Math.floor(player.position + 0.2)) &&
