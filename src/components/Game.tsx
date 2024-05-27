@@ -1,5 +1,5 @@
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import { View3D } from './game/view3d'
 import { Trench } from './game/Trench'
@@ -34,7 +34,6 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
-    const playerSpeed = useRef(4); // distance units per second
 
     const collided: CollisionCallback = () => {
         player.isAlive = false;
@@ -58,17 +57,21 @@ export const Game = () => {
         if (player.isAlive) keys?.[e.key]()
     })
     /* Touchscreen Swipe */
-    const touch = useSwipeable({
-        onSwipedUp: actions.moveUp,
-        onSwipedDown: actions.moveDn,
-        onSwipedLeft: actions.moveLt,
-        onSwipedRight: actions.moveRt,
-    });
+    const touch = useSwipeable(({
+        ...(player.isAlive && {
+            onSwipedUp: actions.moveUp,
+            onSwipedDown: actions.moveDn,
+            onSwipedLeft: actions.moveLt,
+            onSwipedRight: actions.moveRt,
+            preventScrollOnSwipe: true,
+            trackMouse: true,
+        })
+    }));
 
     /* Update game state */
     useAnimationFrame((time: number)=>{
         const distanceTravelled = player.isAlive ? 
-            lerp(playerSpeed.current, time / 1000) : 0
+            lerp(player.speed, time / 1000) : 0
         setPlayer({...player, position: player.position + distanceTravelled})
     })
 
