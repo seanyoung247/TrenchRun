@@ -24,7 +24,8 @@
 
 /* Theming */
 .obstacle .segment.filled {
-    background: red;
+    background: var(--tex, red);
+    background-size: 100% 100%;
 }
 
 /* Segments */
@@ -35,7 +36,8 @@
 
 .segment > .side {
     position: absolute;
-    background: blue;
+    background: var(--tex, blue);
+    background-size: 100% 100%;
     transform-style: preserve-3d;
 }
 

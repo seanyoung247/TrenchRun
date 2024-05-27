@@ -7,7 +7,9 @@ import { CollisionCallback, detectCollision } from '../../types/collisions'
 import { ObstacleData, ObstacleLayout, generateLayout, indexToPoint, isFilled } from '../../types/obstacle'
 import { classList } from '../../util/css'
 
+import tile from '../../assets/tiles/tile01.webp'
 import './Obstacles.css'
+import { getRandomTile } from '../../util/tiles'
 
 type ObstacleProps = {
     player: Player,
@@ -27,13 +29,17 @@ const genSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
     ]
     const sides = (!isFilled(a as ObstacleLayout, p)) ? edges.map(v => (
         isFilled(a as ObstacleLayout, {x:(p.x + v.p.x), y:(p.y + v.p.y)})&&(
-            <div key={v.side} className={classList('side', v.side)}/>
+            <div key={v.side} 
+                className={classList('side', v.side)}
+                style={{'--tex': `url(${tile})`}}
+            />
         )
     )).filter(v=>v) : []
 
     return (
         <div key={i} 
             className={ classList("segment", (filled)&&"filled") }
+            style={{'--tex': getRandomTile()}}
         >
             { sides }
         </div>
