@@ -20,13 +20,13 @@ type ObstacleProps = {
 const genSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
     const filled = (v > 0)
     const p = indexToPoint(i)
-    // const sides:ReactElement[] = []
     const edges = [
         {side:'left', p:{x:-1,y:0}},
         {side:'right', p:{x:1,y:0}},
         {side:'top', p:{x:0,y:-1}},
         {side:'bottom', p:{x:0,y:1}},
     ]
+    // Add sides to blank tiles where they border a filled one.
     const sides = (!isFilled(a as ObstacleLayout, p)) ? edges.map(v => (
         isFilled(a as ObstacleLayout, {x:(p.x + v.p.x), y:(p.y + v.p.y)})&&(
             <div key={v.side} 

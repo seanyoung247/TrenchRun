@@ -20,9 +20,13 @@ import './Game.css'
 const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point) => {
     setter(
         createPlayer({
-            x: clamp(-1, 1, player.offset.x + direction.x),
-            y: clamp(-1, 1, player.offset.y + direction.y)
-        }, player.position)
+                x: clamp(-1, 1, player.offset.x + direction.x),
+                y: clamp(-1, 1, player.offset.y + direction.y)
+            },
+            player.position,
+            player.speed,
+            player.isAlive
+        )
     )
 }
 
@@ -31,7 +35,7 @@ export const Game = () => {
     const playerSpeed = useRef(4); // distance units per second
 
     const collided: CollisionCallback = () => {
-        playerSpeed.current = 0
+        player.isAlive = false;
     }
 
     /* Handle User input */
@@ -41,12 +45,14 @@ export const Game = () => {
             ArrowDown: ()=>setPosition(setPlayer, player, {x:0, y:1}),
             ArrowLeft: ()=>setPosition(setPlayer, player, {x:-1,y:0}),
             ArrowRight: ()=>setPosition(setPlayer, player, {x:1, y:0}),
-        }; keys?.[e.key]()
+        }
+        if (player.isAlive) keys?.[e.key]()
     })
 
     /* Update game state */
     useAnimationFrame((time: number)=>{
-        const distanceTravelled = lerp(playerSpeed.current, time / 1000)
+        const distanceTravelled = player.isAlive ? 
+            lerp(playerSpeed.current, time / 1000) : 0
         setPlayer({...player, position: player.position + distanceTravelled})
     })
 
