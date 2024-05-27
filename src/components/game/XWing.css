@@ -15,6 +15,7 @@
     max-width: 50%;
     aspect-ratio: 2;
     translate: -50% 0%;
+    overflow: visible;
 
     /* Dynamic positioning */
     transform-origin: center bottom;
@@ -22,7 +23,8 @@
         rotateX(-90deg)
         translate3D(var(--xOff), var(--yOff), -0.25lvh);
     transition: transform 0.25s;
+}
 
-    /* Theming */
+.xwing.alive {
     background: var(--tex) center / contain no-repeat;
 }

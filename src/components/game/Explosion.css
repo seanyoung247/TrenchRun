@@ -1,0 +1,47 @@
+
+.explosion {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+
+    translate: -50% -50%;
+    
+    background: transparent;
+    background-size: 100% 100%;
+    animation: explode 0.25s linear;
+}
+
+@keyframes explode {
+    0% { 
+        background: url('/src/assets/explosion/Explosion_1.png') 
+        top left/100% 100% no-repeat; 
+    }
+    15% {
+        background: url('/src/assets/explosion/Explosion_2.png')
+        top left/100% 100% no-repeat;
+    }
+    30% {
+        background: url('/src/assets/explosion/Explosion_3.png')
+        top left/100% 100% no-repeat;
+    }
+    45% {
+        background: url('/src/assets/explosion/Explosion_4.png')
+        top left/100% 100% no-repeat;
+    }
+    60% {
+        background: url('/src/assets/explosion/Explosion_5.png')
+        top left/100% 100% no-repeat;
+    }
+    75% {
+        background: url('/src/assets/explosion/Explosion_6.png')
+        top left/100% 100% no-repeat;
+    }
+    90% {
+        background: url('/src/assets/explosion/Explosion_7.png')
+        top left/100% 100% no-repeat;
+    }
+    100% {
+        background: transparent;
+    }
+}
