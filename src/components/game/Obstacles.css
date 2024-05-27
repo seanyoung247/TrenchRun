@@ -20,6 +20,9 @@
     transform:
         rotateX(-90deg)
         translateZ(var(--progress));
+
+    /* Distance Fade in */
+    opacity: calc(var(--zPos) / 2);
 }
 
 /* Theming */
