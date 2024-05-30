@@ -17,7 +17,7 @@ type ObstacleProps = {
     onCollision?: CollisionCallback | null,
 }
 
-const genSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
+const generateSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
     const filled = (v > 0)
     const p = indexToPoint(i)
     const edges = [
@@ -49,7 +49,7 @@ const genSegments = (layout:ObstacleLayout) => layout.map((v,i,a) => {
 const newObstacleData = (
     position: number=0, 
     layout: ObstacleLayout=[0,0,0, 0,0,0, 0,0,0], 
-    segments: ReactElement[]=genSegments(layout)
+    segments: ReactElement[]=generateSegments(layout)
 ):ObstacleData => ({position, segments, layout})
 
 export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
@@ -62,7 +62,7 @@ export const Obstacle = ({player, start=0, onCollision=null}:ObstacleProps) => {
         // remove it and create a new one at the end of the trench
         const layoutTemplate = generateLayout()
         descriptor.current = newObstacleData(
-            lastPos, layoutTemplate, genSegments(layoutTemplate)
+            lastPos, layoutTemplate, generateSegments(layoutTemplate)
         )
     }
 

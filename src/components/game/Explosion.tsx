@@ -5,8 +5,7 @@ import './Explosion.css'
 
 export const Explosion = () => {
     useEffect(()=>{
-        const explosionAudio = new Audio(explosionSound)
-        explosionAudio.play()
+        new Audio(explosionSound).play()
     },[])
 
     return (

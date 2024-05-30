@@ -35,10 +35,6 @@ const setPosition = (setter: (p:Player)=>void, player: Player, direction: Point)
 export const Game = () => {
     const [player, setPlayer] = useState<Player>(createPlayer())
 
-    const collided: CollisionCallback = () => {
-        player.isAlive = false;
-    }
-
     /* Handle User input */
     const actions = {
         moveUp: ()=>setPosition(setPlayer, player, {x:0, y:-1}),
@@ -74,6 +70,10 @@ export const Game = () => {
             lerp(player.speed, time / 1000) : 0
         setPlayer({...player, position: player.position + distanceTravelled})
     })
+    
+    const collided: CollisionCallback = () => {
+        player.isAlive = false;
+    }
 
     /* Render */
     return (

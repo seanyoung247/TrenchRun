@@ -37,8 +37,8 @@ export const generateLayout = ():ObstacleLayout => {
     return layoutTemplates[index];
 }
 
-export const pointToIndex = (x:number, y:number) => (
-    (x + 1) + (3 * (y + 1))
+export const pointToIndex = (p:Point):number => (
+    (p.x + 1) + (3 * (p.y + 1))
 )
 
 export const indexToPoint = (index:number):Point => ({
@@ -47,5 +47,5 @@ export const indexToPoint = (index:number):Point => ({
 
 export const isFilled = (layout:ObstacleLayout, p:Point):boolean => (
     !(p.x < -1 || p.x > 1 || p.y < -1 || p.y > 1) &&    // Are values in bounds?
-    (layout[pointToIndex(p.x, p.y)] > 0)                // Is segment filled?
+    (layout[pointToIndex(p)] > 0)                       // Is segment filled?
 )
